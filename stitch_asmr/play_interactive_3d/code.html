@@ -134,12 +134,6 @@
 <button onclick="window.location.href='../home/code.html'" class="w-12 h-12 rounded-full bg-surface/50 backdrop-blur-md flex items-center justify-center text-primary raised-btn pointer-events-auto hover:scale-95 transition-transform">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">close</span>
 </button>
-<div class="flex flex-col items-end gap-2">
-<div class="px-4 py-2 rounded-full bg-surface/60 backdrop-blur-md sunken-well flex items-center gap-2 text-primary pointer-events-auto">
-<span class="material-symbols-outlined text-sm">headphones</span>
-<span class="font-label-sm text-label-sm">ASMR On</span>
-</div>
-</div>
 </header>
 <!-- Interaction Hint -->
 <div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-on-surface-variant font-label-md text-label-md opacity-70 animate-pulse pointer-events-none whitespace-nowrap z-20">
@@ -154,57 +148,6 @@
 </footer>
 </main>
 <script>
-        // --- Web Audio API for Crunch Sound ---
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        let audioCtx;
-
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new AudioContext();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-        }
-
-        function playCrunchSound() {
-            if (!audioCtx) return;
-
-            // Random pitch multiplier
-            const pitchShift = 0.8 + Math.random() * 0.4; // 0.8 to 1.2
-            
-            // Create noise buffer for 'crunch'
-            const bufferSize = audioCtx.sampleRate * 0.15; // 150ms
-            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) {
-                data[i] = Math.random() * 2 - 1;
-            }
-
-            const noise = audioCtx.createBufferSource();
-            noise.buffer = buffer;
-            noise.playbackRate.value = pitchShift;
-
-            const filter = audioCtx.createBiquadFilter();
-            filter.type = 'highpass';
-            filter.frequency.value = 1000 * pitchShift;
-
-            const gainNode = audioCtx.createGain();
-            gainNode.gain.setValueAtTime(0.8, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-
-            noise.connect(filter);
-            filter.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            noise.start();
-        }
-
-        // Initialize audio context on first user interaction
-        document.body.addEventListener('pointerdown', initAudio, { once: true });
-
-        // Listen for the custom event from the 3D scene
-        window.addEventListener('wax-crack', playCrunchSound);
 
         // --- Three.js Scene Setup ---
         const container = document.getElementById('three-container');
@@ -249,7 +192,10 @@ try {
             'bg-gray-800': 0x1f2937,
             'bg-blue-200': 0xbfdbfe,
             'bg-primary-container': 0xffc1cc,
-            'bg-secondary-container': 0xbceddc
+            'bg-secondary-container': 0xbceddc,
+            'bg-yellow-100': 0xfef08a,
+            'bg-purple-100': 0xf3e8ff,
+            'bg-[#d0c8c0]': 0xd0c8c0
         };
         if(match && colorMap[match[0]] !== undefined) {
             ballColor = colorMap[match[0]];
@@ -315,7 +261,7 @@ for(let i=0; i<particlesCount*3; i++) {
     velArray[i] = (Math.random() - 0.5) * 0.1;
 }
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-const particlesMaterial = new THREE.PointsMaterial({ size: 0.05, color: 0xffffff });
+const particlesMaterial = new THREE.PointsMaterial({ size: 0.15, color: ballColor });
 const particles = new THREE.Points(particlesGeometry, particlesMaterial);
 particles.visible = false;
 scene.add(particles);
@@ -327,9 +273,9 @@ function explode(point) {
         positions[i*3] = point.x;
         positions[i*3+1] = point.y;
         positions[i*3+2] = point.z;
-        velArray[i*3] = (Math.random() - 0.5) * 0.2;
-        velArray[i*3+1] = (Math.random() - 0.5) * 0.2;
-        velArray[i*3+2] = (Math.random() - 0.5) * 0.2;
+        velArray[i*3] = (Math.random() - 0.5) * 0.4;
+        velArray[i*3+1] = (Math.random() - 0.5) * 0.4;
+        velArray[i*3+2] = (Math.random() - 0.5) * 0.4;
     }
     particles.geometry.attributes.position.needsUpdate = true;
 }
@@ -350,17 +296,24 @@ function onPointerMove(event) {
     }
 }
 
-function onPointerDown() {
+function onPointerDown(event) {
+    if (event) {
+        const rect = container.getBoundingClientRect();
+        mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    }
     isPressing = true;
     const partsOverlay = document.getElementById('partsOverlay');
-    if(partsOverlay) partsOverlay.style.transform = 'translate(-50%, -50%) scale(0.95)';
+    if(partsOverlay) {
+        partsOverlay.style.transform = `translate(-50%, -50%) scale(${0.95 + Math.random()*0.05}) rotate(${(Math.random()-0.5)*10}deg)`;
+        partsOverlay.style.opacity = Math.max(0.3, parseFloat(partsOverlay.style.opacity || 1) - 0.15);
+    }
     
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObject(ball);
     if (intersects.length > 0) {
+        deform(intersects[0].point, 0.4);
         explode(intersects[0].point);
-        // Dispatch custom event for sound
-        window.dispatchEvent(new CustomEvent('wax-crack'));
     }
 }
 
@@ -378,9 +331,7 @@ function animate() {
     requestAnimationFrame(animate);
     const delta = clock.getDelta();
     
-    if (!isPressing) {
-        restore();
-    }
+
     
     if (particles.visible) {
         const positions = particles.geometry.attributes.position.array;
