@@ -267,9 +267,13 @@
 <script>
         function saveAndNext() {
             const ball = document.getElementById('wip-ball');
+            const compStyle = window.getComputedStyle(ball);
+            const bgColor = compStyle.backgroundColor;
+            
             localStorage.setItem('waxball_wip', JSON.stringify({
                 className: ball.className,
-                innerHTML: ball.innerHTML
+                innerHTML: ball.innerHTML,
+                bgColor: bgColor
             }));
             window.location.href = '../maker_2_no_bg/code.html';
         }

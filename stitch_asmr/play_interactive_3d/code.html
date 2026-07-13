@@ -221,41 +221,61 @@ try {
     if(dataStr) {
         const data = JSON.parse(dataStr);
         if (data.waxType) waxType = data.waxType;
-        const match = data.className.match(/bg-[^\s]+/);
-        const colorMap = {
-            'bg-white': 0xffffff,
-            'bg-gray-800': 0x1f2937,
-            'bg-blue-200': 0xbfdbfe,
-            'bg-primary-container': 0xffc1cc,
-            'bg-secondary-container': 0xbceddc,
-            'bg-yellow-100': 0xfef08a,
-            'bg-purple-100': 0xf3e8ff,
-            'bg-[#d0c8c0]': 0xd0c8c0
-        };
-        if(match && colorMap[match[0]] !== undefined) {
-            ballColor = colorMap[match[0]];
+        
+        // Use directly extracted RGB color from the DOM
+        if (data.bgColor) {
+            // Remove 'rgb(' and ')' to get 'r, g, b'
+            const rgbMatch = data.bgColor.match(/\d+/g);
+            if(rgbMatch && rgbMatch.length >= 3) {
+                ballColor = new THREE.Color(`rgb(${rgbMatch[0]}, ${rgbMatch[1]}, ${rgbMatch[2]})`);
+            }
+        }
+        
+        // Fallback for old library items
+        if (typeof ballColor === 'number' && data.className) {
+            const match = data.className.match(/bg-[^\s]+/);
+            const colorMap = {
+                'bg-white': 0xffffff,
+                'bg-gray-800': 0x1f2937,
+                'bg-blue-200': 0xbfdbfe,
+                'bg-primary-container': 0xffc1cc,
+                'bg-secondary-container': 0xbceddc,
+                'bg-yellow-100': 0xfef08a,
+                'bg-purple-100': 0xf3e8ff,
+                'bg-[#d0c8c0]': 0xd0c8c0
+            };
+            if(match && colorMap[match[0]] !== undefined) {
+                ballColor = colorMap[match[0]];
+            }
         }
         document.getElementById('partsOverlay').innerHTML = data.innerHTML;
     }
 } catch(e) {}
 
-// Core Ball (Squishy Inner)
+// Core Ball (Squishy/Slimy Inner)
 const coreGeometry = new THREE.SphereGeometry(1.9, 64, 64);
-const coreMaterial = new THREE.MeshPhongMaterial({
+const coreMaterial = new THREE.MeshPhysicalMaterial({
     color: ballColor,
-    shininess: 30,
+    roughness: 0.1, // very smooth/wet
+    metalness: 0.0,
+    transmission: 0.3, // slight transparency like slime
+    thickness: 1.0,
+    clearcoat: 1.0, // extra shiny wet look
+    clearcoatRoughness: 0.1
 });
 const coreBall = new THREE.Mesh(coreGeometry, coreMaterial);
 scene.add(coreBall);
 
-// Wax Shell (Hard Outer)
-const waxGeometry = new THREE.SphereGeometry(2.0, 64, 64);
-const waxMaterial = new THREE.MeshPhongMaterial({
+// Wax Shell (Hard, Crunchy Outer)
+const waxGeometry = new THREE.IcosahedronGeometry(2.0, 12); // Less segments for low-poly crisp look
+const waxMaterial = new THREE.MeshStandardMaterial({
     color: 0xffffff,
-    shininess: waxType === 'glossy' ? 100 : 10,
+    roughness: waxType === 'glossy' ? 0.0 : 0.8,
+    metalness: 0.1,
     transparent: true,
-    opacity: waxType === 'glossy' ? 0.3 : 0.5,
-    side: THREE.DoubleSide
+    opacity: waxType === 'glossy' ? 0.35 : 0.55,
+    side: THREE.DoubleSide,
+    flatShading: true // Crisp edges for shatter effect
 });
 const ball = new THREE.Mesh(waxGeometry, waxMaterial); // "ball" is the interactable wax shell
 scene.add(ball);
@@ -281,9 +301,14 @@ function deform(point, intensity) {
         const dist = Math.sqrt((vx - point.x) ** 2 + (vy - point.y) ** 2 + (vz - point.z) ** 2);
         if (dist < 1.0) {
             // Push wax shell heavily inward towards the center (0,0,0), exposing the core
-            const factor = (1.0 - dist) * intensity;
+            // Create jagged/crisp break by pushing further and adding noise
+            let factor = (1.0 - dist) * intensity * 1.5;
             const length = Math.sqrt(vx*vx + vy*vy + vz*vz);
             if(length > 0) {
+                // Add jagged noise to the break
+                const noise = (Math.random() - 0.5) * 0.4;
+                factor += noise;
+                
                 positions[i] -= (vx / length) * factor;
                 positions[i + 1] -= (vy / length) * factor;
                 positions[i + 2] -= (vz / length) * factor;
