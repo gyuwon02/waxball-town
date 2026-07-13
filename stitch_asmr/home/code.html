@@ -225,9 +225,9 @@
 </div>
 <nav class="hidden md:flex gap-8">
 <a class="text-primary dark:text-primary-fixed-dim font-bold hover:scale-105 transition-transform duration-300 font-label-md text-label-md" href="#">Home</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:scale-105 transition-transform duration-300 font-label-md text-label-md" href="#">Make</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:scale-105 transition-transform duration-300 font-label-md text-label-md" href="#">Play</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:scale-105 transition-transform duration-300 font-label-md text-label-md" href="#">Library</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:scale-105 transition-transform duration-300 font-label-md text-label-md" href="../maker_1/code.html">Make</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:scale-105 transition-transform duration-300 font-label-md text-label-md" href="../play/code.html">Play</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:scale-105 transition-transform duration-300 font-label-md text-label-md" href="../library/code.html">Library</a>
 </nav>
 <div class="flex items-center gap-4">
 <button aria-label="Settings" class="p-2 rounded-full text-primary dark:text-primary-fixed-dim hover:bg-surface-variant transition-colors">
@@ -266,13 +266,13 @@
 </div>
 <!-- Action Buttons -->
 <div class="flex flex-col sm:flex-row gap-6 w-full max-w-2xl justify-center z-10">
-<button class="flex-1 neomorph-raised bg-surface rounded-full py-4 px-8 flex items-center justify-center gap-3 hover:bg-surface-container transition-colors active:neomorph-sunken active:scale-95 duration-200 group">
+<button onclick="window.location.href='../maker_1/code.html'" class="flex-1 neomorph-raised bg-surface rounded-full py-4 px-8 flex items-center justify-center gap-3 hover:bg-surface-container transition-colors active:neomorph-sunken active:scale-95 duration-200 group">
 <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center group-hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-primary" data-icon="draw">draw</span>
 </div>
 <span class="font-headline-md text-headline-md text-primary">공방으로 가기</span>
 </button>
-<button class="flex-1 neomorph-raised bg-surface rounded-full py-4 px-8 flex items-center justify-center gap-3 hover:bg-surface-container transition-colors active:neomorph-sunken active:scale-95 duration-200 group">
+<button onclick="window.location.href='../library/code.html'" class="flex-1 neomorph-raised bg-surface rounded-full py-4 px-8 flex items-center justify-center gap-3 hover:bg-surface-container transition-colors active:neomorph-sunken active:scale-95 duration-200 group">
 <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-secondary" data-icon="shelves">shelves</span>
 </div>
@@ -284,15 +284,15 @@
 </main>
 <!-- BottomNavBar (Mobile Only) -->
 <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe pt-2 bg-surface/90 dark:bg-inverse-surface/90 backdrop-blur-2xl bg-surface-container-highest/30 border-t border-white/20 shadow-[0_-10px_30px_-5px_rgba(0,0,0,0.05)] rounded-t-xl pb-4">
-<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim">
+<button onclick="window.location.href='../maker_1/code.html'" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim">
 <span class="material-symbols-outlined mb-1" data-icon="draw">draw</span>
 <span class="font-label-sm text-label-sm">Make</span>
 </button>
-<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-6 py-2 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),inset_-2px_-2px_4px_rgba(255,255,255,0.8)] scale-90 transition-transform duration-200">
+<button onclick="window.location.href='../play/code.html'" class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-6 py-2 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),inset_-2px_-2px_4px_rgba(255,255,255,0.8)] scale-90 transition-transform duration-200">
 <span class="material-symbols-outlined mb-1" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
 <span class="font-label-sm text-label-sm font-bold">Play</span>
 </button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim">
+<button onclick="window.location.href='../library/code.html'" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim">
 <span class="material-symbols-outlined mb-1" data-icon="shelves">shelves</span>
 <span class="font-label-sm text-label-sm">Library</span>
 </button>
