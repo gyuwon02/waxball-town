@@ -171,7 +171,6 @@ function saveToLibrary() {
         
         <!-- STITCH_THREEJS_START:ANIMATION_9 class="" -->
 <div class="" style="display:block;width:100%;height:100%;min-height:200px;">
-<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
 <div id="threejs-container-ANIMATION_9" style="width:100%;height:100%"></div>
 <script>
 (function() {
@@ -255,7 +254,7 @@ const waxMaterial = new THREE.MeshPhongMaterial({
     color: 0xffffff,
     shininess: waxType === 'glossy' ? 100 : 10,
     transparent: true,
-    opacity: waxType === 'glossy' ? 0.6 : 0.85,
+    opacity: waxType === 'glossy' ? 0.3 : 0.5,
     side: THREE.DoubleSide
 });
 const ball = new THREE.Mesh(waxGeometry, waxMaterial); // "ball" is the interactable wax shell
@@ -281,11 +280,14 @@ function deform(point, intensity) {
         
         const dist = Math.sqrt((vx - point.x) ** 2 + (vy - point.y) ** 2 + (vz - point.z) ** 2);
         if (dist < 1.0) {
-            // Push wax shell heavily inward, exposing the core
+            // Push wax shell heavily inward towards the center (0,0,0), exposing the core
             const factor = (1.0 - dist) * intensity;
-            positions[i] -= (vx - point.x) * factor;
-            positions[i + 1] -= (vy - point.y) * factor;
-            positions[i + 2] -= (vz - point.z) * factor;
+            const length = Math.sqrt(vx*vx + vy*vy + vz*vz);
+            if(length > 0) {
+                positions[i] -= (vx / length) * factor;
+                positions[i + 1] -= (vy / length) * factor;
+                positions[i + 2] -= (vz / length) * factor;
+            }
         }
     }
     waxGeometry.attributes.position.needsUpdate = true;
