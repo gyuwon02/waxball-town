@@ -215,20 +215,30 @@
         document.addEventListener('DOMContentLoaded', () => {
             const dataStr = localStorage.getItem('waxball_wip');
             if (dataStr) {
-                const data = JSON.parse(dataStr);
-                const clayBall = document.getElementById('clayBall');
-                const bgMatch = data.className.match(/bg-[^\s]+/);
-                if (bgMatch) {
-                    clayBall.className = clayBall.className.replace(/bg-\[[^\]]+\]/, '');
-                    clayBall.classList.add(bgMatch[0]);
-                }
-                const coating = document.getElementById('waxCoating');
-                clayBall.innerHTML = data.innerHTML;
-                clayBall.appendChild(coating);
+                try {
+                    const data = JSON.parse(dataStr);
+                    const clayBall = document.getElementById('clayBall');
+                    const colorMatch = data.className.match(/bg-[^\s]+/);
+                    if (colorMatch) {
+                        clayBall.className = clayBall.className.replace(/bg-\[[^\]]+\]|bg-\w+(-\d+)?(-\w+)?/g, '');
+                        clayBall.classList.add(colorMatch[0]);
+                    }
+                    
+                    const coating = document.getElementById('waxCoating');
+                    // We append parts correctly without destroying the coating
+                    const partsDiv = document.createElement('div');
+                    partsDiv.className = 'absolute inset-0 pointer-events-none flex items-center justify-center';
+                    partsDiv.innerHTML = data.innerHTML;
+                    
+                    // Clear anything else inside clayBall except the coating
+                    clayBall.innerHTML = '';
+                    clayBall.appendChild(partsDiv);
+                    clayBall.appendChild(coating);
+                } catch(e) {}
             }
         });
 
-        function selectWax(clickedBtn) {
+        function selectWax(selectedBtn) {
             // Prevent changing during animation
             if(document.getElementById('actionBtn').disabled) return;
 

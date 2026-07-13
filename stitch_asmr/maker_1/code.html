@@ -277,8 +277,8 @@
         // Simple interactions for prototyping
         function selectCore(colorClass) {
             const ball = document.getElementById('wip-ball');
-            // Remove existing color classes (simplified approach)
-            ball.className = ball.className.replace(/bg-\w+(-\d+)?/g, '');
+            // Remove existing color classes
+            ball.className = ball.className.replace(/bg-[^\s]+/g, '');
             ball.classList.add(colorClass);
             
             // Add visual feedback to buttons (would be more robust in real app)
@@ -292,7 +292,7 @@
 
         function setColor(colorClass) {
             const ball = document.getElementById('wip-ball');
-            ball.className = ball.className.replace(/bg-\w+(-\d+)?/g, '');
+            ball.className = ball.className.replace(/bg-[^\s]+/g, '');
             ball.classList.add(colorClass);
             
             // Highlight selected color
