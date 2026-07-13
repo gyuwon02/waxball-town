@@ -157,14 +157,14 @@
 </div>
 </div>
 <!-- The Workbench (Center Display) -->
-<div class="relative w-full aspect-square md:aspect-[16/9] md:h-[460px] rounded-[2rem] overflow-hidden mb-element-gap-lg wood-texture neomorph-sunken border border-white/40 flex items-center justify-center">
+<div class="relative w-full min-h-[380px] md:min-h-[500px] rounded-[2rem] overflow-hidden mb-element-gap-lg wood-texture neomorph-sunken border border-white/40 flex items-center justify-center">
 <!-- Drop Zone Hint -->
 <div class="absolute inset-0 border-4 border-dashed border-primary/20 rounded-[2rem] m-4 pointer-events-none flex flex-col items-center justify-center opacity-50">
 <span class="material-symbols-outlined text-[48px] text-primary/40 mb-2" data-icon="drag_indicator">drag_indicator</span>
-<p class="font-label-md text-label-md text-primary/60">Drag parts here</p>
+<p class="font-label-md text-label-md text-primary/60">Drag or tap parts here</p>
 </div>
 <!-- The Work-in-Progress Ball -->
-<div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full bg-white shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.1),_inset_10px_10px_20px_rgba(255,255,255,0.9),_0_20px_30px_-10px_rgba(129,81,91,0.3)] transition-colors duration-500 flex items-center justify-center z-10" id="wip-ball">
+<div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-white shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.1),_inset_10px_10px_20px_rgba(255,255,255,0.9),_0_20px_30px_-10px_rgba(129,81,91,0.3)] transition-colors duration-500 flex items-center justify-center z-10" id="wip-ball">
 <!-- Example added part -->
 <div class="absolute w-4 h-4 bg-yellow-400 rounded-full top-1/4 left-1/3 shadow-sm transform rotate-12 blur-[1px] opacity-80"></div>
 <div class="absolute w-3 h-3 bg-blue-400 rounded-full bottom-1/3 right-1/4 shadow-sm blur-[1px] opacity-80"></div>
@@ -222,29 +222,29 @@
 <!-- Parts Grid -->
 <div class="grid grid-cols-4 gap-4 mt-2">
 <!-- Part Items -->
-<div class="draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative">
-<div class="w-6 h-6 bg-yellow-400 rounded-sm transform rotate-45 shadow-sm group-hover:scale-110 transition-transform"></div>
-<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Stars</span>
+<div onclick="addPart('star')" class="cursor-pointer draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative active:scale-95 transition-transform">
+<div class="w-6 h-6 bg-yellow-400 rounded-sm transform rotate-45 shadow-sm group-hover:scale-110 transition-transform pointer-events-none"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Stars</span>
 </div>
-<div class="draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative">
-<div class="flex gap-1 flex-wrap w-8 h-8 items-center justify-center">
+<div onclick="addPart('glitter')" class="cursor-pointer draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative active:scale-95 transition-transform">
+<div class="flex gap-1 flex-wrap w-8 h-8 items-center justify-center pointer-events-none">
 <div class="w-2 h-2 rounded-full bg-pink-400"></div>
 <div class="w-2 h-2 rounded-full bg-blue-400"></div>
 <div class="w-2 h-2 rounded-full bg-green-400"></div>
 </div>
-<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Glitters</span>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Glitters</span>
 </div>
-<div class="draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative">
-<div class="w-6 h-6 rounded-full bg-gray-400 shadow-inner"></div>
-<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Pebbles</span>
+<div onclick="addPart('pebble')" class="cursor-pointer draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative active:scale-95 transition-transform">
+<div class="w-6 h-6 rounded-full bg-gray-400 shadow-inner pointer-events-none"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Pebbles</span>
 </div>
-<div class="draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative">
-<div class="w-6 h-6 rounded-sm bg-purple-300 opacity-80 backdrop-blur-sm shadow-sm"></div>
-<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Cubes</span>
+<div onclick="addPart('cube')" class="cursor-pointer draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative active:scale-95 transition-transform">
+<div class="w-6 h-6 rounded-sm bg-purple-300 opacity-80 backdrop-blur-sm shadow-sm pointer-events-none"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Cubes</span>
 </div>
 </div>
 <div class="mt-auto pt-6 flex justify-end">
-<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded-full neomorph-raised hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors active:scale-95 flex items-center gap-2">
+<button onclick="window.location.href='../maker_2_no_bg/code.html'" class="bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded-full neomorph-raised hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors active:scale-95 flex items-center gap-2">
                         Next Step
                         <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
@@ -254,15 +254,15 @@
 </main>
 <!-- Bottom Navigation Bar -->
 <nav class="md:hidden bg-surface/90 dark:bg-inverse-surface/90 backdrop-blur-2xl fixed bottom-0 w-full z-50 rounded-t-xl px-4 pb-4 pt-2 bg-surface-container-highest/30 border-t border-white/20 shadow-[0_-10px_30px_-5px_rgba(0,0,0,0.05)] flex justify-around items-center left-0 pb-safe">
-<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-6 py-2 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),inset_-2px_-2px_4px_rgba(255,255,255,0.8)] scale-90 transition-transform duration-200">
+<button onclick="window.location.href='../maker_1/code.html'" class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-6 py-2 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),inset_-2px_-2px_4px_rgba(255,255,255,0.8)] scale-90 transition-transform duration-200">
 <span class="material-symbols-outlined" data-icon="draw">draw</span>
 <span class="font-label-sm text-label-sm mt-1">Make</span>
 </button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors">
+<button onclick="window.location.href='../play/code.html'" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors">
 <span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
 <span class="font-label-sm text-label-sm mt-1">Play</span>
 </button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors">
+<button onclick="window.location.href='../library/code.html'" class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors">
 <span class="material-symbols-outlined" data-icon="shelves">shelves</span>
 <span class="font-label-sm text-label-sm mt-1">Library</span>
 </button>
@@ -296,6 +296,47 @@
             });
             event.currentTarget.classList.add('border-primary', 'border-2');
             event.currentTarget.classList.remove('border-transparent', 'border');
+        }
+
+        function addPart(type) {
+            const ball = document.getElementById('wip-ball');
+            const part = document.createElement('div');
+            
+            const top = 15 + Math.random() * 60; 
+            const left = 15 + Math.random() * 60;
+            const rotation = Math.random() * 360;
+            
+            part.style.top = `${top}%`;
+            part.style.left = `${left}%`;
+            
+            let baseClasses = 'absolute shadow-sm opacity-80 backdrop-blur-sm z-20 pointer-events-none transition-all duration-300';
+            
+            if (type === 'star') {
+                part.className = `${baseClasses} w-4 h-4 bg-yellow-400 rounded-sm`;
+                part.style.transform = `scale(0) rotate(${rotation}deg)`;
+            } else if (type === 'glitter') {
+                const colors = ['bg-pink-400', 'bg-blue-400', 'bg-green-400'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                part.className = `${baseClasses} w-2 h-2 rounded-full ${color}`;
+                part.style.transform = `scale(0)`;
+            } else if (type === 'pebble') {
+                part.className = `${baseClasses} w-5 h-5 rounded-full bg-gray-400 shadow-inner`;
+                part.style.transform = `scale(0)`;
+            } else if (type === 'cube') {
+                part.className = `${baseClasses} w-4 h-4 rounded-sm bg-purple-300`;
+                part.style.transform = `scale(0) rotate(${rotation}deg)`;
+            }
+
+            ball.appendChild(part);
+            
+            // Trigger reflow and scale up
+            void part.offsetWidth;
+            
+            if (type === 'star' || type === 'cube') {
+                part.style.transform = `scale(1) rotate(${rotation}deg)`;
+            } else {
+                part.style.transform = `scale(1)`;
+            }
         }
     </script>
 </body></html>
