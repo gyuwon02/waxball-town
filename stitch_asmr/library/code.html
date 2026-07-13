@@ -173,6 +173,12 @@
 <header class="fixed top-0 w-full z-40 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl docked full-width rounded-b-xl shadow-[0_4px_20px_-4px_rgba(129,81,91,0.15)]">
 <div class="flex justify-between items-center w-full px-container-margin py-4 max-w-7xl mx-auto">
 <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary dark:text-primary-fixed-dim drop-shadow-sm tracking-tight font-extrabold">WaxBall Town</h1>
+<nav class="hidden md:flex gap-4 lg:gap-8 items-center">
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md px-4 py-2 transition-colors" href="../home/code.html">Home</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md px-4 py-2 transition-colors" href="../maker_1/code.html">Make</a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md px-4 py-2 transition-colors" href="../play/code.html">Play</a>
+<a class="text-primary font-label-md text-label-md px-4 py-2 font-bold bg-primary-container rounded-full neo-sunken" href="../library/code.html">Library</a>
+</nav>
 <div class="flex items-center gap-element-sm">
 <button aria-label="Settings" class="p-2 text-primary dark:text-primary-fixed-dim hover:scale-105 transition-transform duration-300 active:scale-95">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
@@ -191,7 +197,6 @@
 <!-- Page Header -->
 <div class="mb-element-lg text-center mt-4">
 <h2 class="font-display-lg text-display-lg text-on-surface mb-2">My Library</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto">직접 만든 왁뿌볼 추억들을 따뜻한 나무 선반에 안전하게 보관하세요.</p>
 </div>
 <!-- Shelves Layout -->
 <div class="flex flex-col gap-12 max-w-4xl mx-auto mb-20">
@@ -334,11 +339,6 @@
 </a>
 </nav>
 <!-- Desktop SideNav/Header Nav elements hidden on mobile, visible on md -->
-<div class="hidden md:flex fixed top-4 right-24 z-50 gap-element-md items-center h-16">
-<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md px-4 py-2 transition-colors" href="#">Make</a>
-<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md px-4 py-2 transition-colors" href="#">Play</a>
-<a class="text-primary font-label-md text-label-md px-4 py-2 font-bold bg-primary-container rounded-full neo-sunken" href="#">Library</a>
-</div>
 <!-- Script for handling popovers -->
 <script>
         function toggleMenu(menuId) {
