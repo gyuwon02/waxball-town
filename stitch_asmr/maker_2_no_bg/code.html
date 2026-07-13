@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
@@ -159,11 +159,12 @@
         }
 
         .wax-stream {
-            width: 24px;
+            width: 32px;
             height: 250px;
-            background: linear-gradient(to bottom, theme('colors.primary-container'), theme('colors.primary-fixed'));
-            border-radius: 12px;
-            filter: drop-shadow(0 4px 12px rgba(255, 193, 204, 0.6));
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 16px;
+            filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.6));
         }
     </style>
 </head>
@@ -190,9 +191,9 @@
 <!-- Base Clay Ball -->
 <div class="absolute inset-0 rounded-full bg-[#d0c8c0] neo-ball-base transition-all duration-500 overflow-hidden" id="clayBall">
 <!-- Wax Coating Layer (Revealed via height animation) -->
-<div class="absolute top-0 left-0 w-full bg-primary-container h-0 opacity-0 neo-ball-coated flex items-center justify-center relative" id="waxCoating">
+<div class="absolute top-0 left-0 w-full h-0 opacity-0 flex items-center justify-center pointer-events-none transition-colors duration-500 bg-white/20" id="waxCoating" style="mix-blend-mode: overlay;">
 <!-- Subtle highlight to make it look glossy/liquid initially -->
-<div class="absolute top-[10%] left-[15%] w-1/3 h-1/3 bg-white/40 rounded-full blur-md mix-blend-overlay"></div>
+<div class="absolute top-[10%] left-[15%] w-1/3 h-1/3 bg-white/60 rounded-full blur-md" id="waxHighlight"></div>
 </div>
 </div>
 <!-- Shadow under the ball -->
@@ -218,13 +219,6 @@
 <span class="material-symbols-outlined text-primary text-sm opacity-0 group-[.active]:opacity-100 transition-opacity" data-weight="fill">check</span>
 </div>
 <span class="font-label-md text-label-md text-on-surface-variant group-[.active]:text-primary transition-colors">무광</span>
-</button>
-<!-- Glow -->
-<button class="wax-btn group flex flex-col items-center gap-2 px-6 py-4 rounded-xl neo-raised bg-surface transition-all duration-300" data-type="glow" onclick="selectWax(this)">
-<div class="w-8 h-8 rounded-full bg-secondary-container shadow-inner border border-white/50 flex items-center justify-center group-[.active]:ring-2 ring-primary ring-offset-2 ring-offset-surface transition-all">
-<span class="material-symbols-outlined text-secondary text-sm opacity-0 group-[.active]:opacity-100 transition-opacity" data-weight="fill">check</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface-variant group-[.active]:text-primary transition-colors">야광</span>
 </button>
 </div>
 </div>
@@ -265,6 +259,19 @@
             // Set active
             clickedBtn.classList.add('active', 'neo-sunken', 'bg-surface-container-low');
             clickedBtn.classList.remove('neo-raised', 'bg-surface');
+
+            // Apply visual changes to coating preview
+            const coating = document.getElementById('waxCoating');
+            const highlight = document.getElementById('waxHighlight');
+            if(clickedBtn.dataset.type === 'glossy') {
+                coating.className = "absolute top-0 left-0 w-full h-0 opacity-0 flex items-center justify-center pointer-events-none transition-colors duration-500 bg-white/30";
+                coating.style.mixBlendMode = "overlay";
+                highlight.className = "absolute top-[10%] left-[15%] w-1/3 h-1/3 bg-white/80 rounded-full blur-sm";
+            } else {
+                coating.className = "absolute top-0 left-0 w-full h-0 opacity-0 flex items-center justify-center pointer-events-none transition-colors duration-500 bg-white/10 backdrop-blur-[2px]";
+                coating.style.mixBlendMode = "normal";
+                highlight.className = "absolute top-[10%] left-[15%] w-1/3 h-1/3 bg-white/20 rounded-full blur-xl";
+            }
         }
 
         function startPour() {
@@ -298,10 +305,12 @@
                 
                 // Add hardening visual effect to the wax
                 coating.classList.add('animate-harden');
-            }, 800);
+                // Make sure coating stays full height
+                coating.style.height = '100%';
+                coating.style.opacity = '1';
 
-            // Finish State
-            setTimeout(() => {
+                // Re-enable and change to next step after hardening
+                setTimeout(() => {
                 icon.textContent = 'play_arrow';
                 icon.classList.remove('animate-pulse');
                 icon.setAttribute('data-weight', 'fill');

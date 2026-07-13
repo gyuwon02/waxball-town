@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="ko"><head>
+<html class="light" lang="ko"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>WaxBall Town - Play 3D</title>
@@ -101,51 +101,53 @@
         }
     </script>
 <style>
-        /* Neomorphic sunken well for dark mode */
-        .sunken-well-dark {
-            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.05);
+        /* Neomorphic sunken well */
+        .sunken-well {
+            box-shadow: inset 4px 4px 8px rgba(129, 81, 91, 0.15), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
         }
         
-        /* Neomorphic raised button for dark mode */
-        .raised-btn-dark {
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5), -4px -4px 10px rgba(255, 255, 255, 0.05);
+        /* Neomorphic raised button */
+        .raised-btn {
+            box-shadow: 4px 4px 10px rgba(129, 81, 91, 0.15), -4px -4px 10px rgba(255, 255, 255, 0.9);
             transition: all 0.2s ease;
         }
-        .raised-btn-dark:active {
-            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.05);
+        .raised-btn:active {
+            box-shadow: inset 4px 4px 8px rgba(129, 81, 91, 0.15), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
             transform: translateY(2px);
         }
     </style>
 </head>
-<body class="bg-on-background text-inverse-on-surface min-h-screen overflow-hidden overscroll-none font-body-md select-none">
-<!-- Ambient Background / Soft Lighting (Darker) -->
+<body class="bg-surface text-on-surface min-h-screen overflow-hidden overscroll-none font-body-md select-none">
+<!-- Ambient Background / Soft Lighting -->
 <div class="fixed inset-0 pointer-events-none z-0">
-<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-container rounded-full mix-blend-overlay filter blur-[100px] opacity-20 animate-pulse"></div>
-<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-container rounded-full mix-blend-overlay filter blur-[100px] opacity-20"></div>
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-container rounded-full mix-blend-multiply filter blur-[100px] opacity-30 animate-pulse"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-container rounded-full mix-blend-multiply filter blur-[100px] opacity-30"></div>
 </div>
 <!-- Main Canvas Area -->
 <main class="relative h-screen w-full flex flex-col items-center justify-center z-10 px-container-margin">
 <!-- 3D Scene Container -->
 <div class="absolute inset-0 w-full h-full z-10 touch-none" id="three-container"></div>
+<!-- Parts Overlay (to show what the user made) -->
+<div class="absolute top-1/2 left-1/2 w-64 h-64 md:w-80 md:h-80 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-15 flex items-center justify-center overflow-hidden rounded-full transition-transform duration-100" id="partsOverlay"></div>
 <!-- Top HUD (Minimal) -->
 <header class="absolute top-0 w-full flex justify-between items-start px-container-margin py-8 z-20 pointer-events-none">
-<button onclick="window.location.href='../home/code.html'" class="w-12 h-12 rounded-full bg-inverse-surface/50 backdrop-blur-md flex items-center justify-center text-inverse-primary raised-btn-dark pointer-events-auto">
+<button onclick="window.location.href='../home/code.html'" class="w-12 h-12 rounded-full bg-surface/50 backdrop-blur-md flex items-center justify-center text-primary raised-btn pointer-events-auto hover:scale-95 transition-transform">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">close</span>
 </button>
 <div class="flex flex-col items-end gap-2">
-<div class="px-4 py-2 rounded-full bg-inverse-surface/60 backdrop-blur-md sunken-well-dark flex items-center gap-2 text-inverse-primary pointer-events-auto">
+<div class="px-4 py-2 rounded-full bg-surface/60 backdrop-blur-md sunken-well flex items-center gap-2 text-primary pointer-events-auto">
 <span class="material-symbols-outlined text-sm">headphones</span>
-<span class="font-label-sm text-label-sm">ASMR 모드 활성</span>
+<span class="font-label-sm text-label-sm">ASMR On</span>
 </div>
 </div>
 </header>
 <!-- Interaction Hint -->
-<div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-surface-variant font-label-md text-label-md opacity-50 animate-pulse pointer-events-none whitespace-nowrap z-20">
-            화면을 터치하거나 드래그하여 왁스볼을 터트려보세요
+<div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-on-surface-variant font-label-md text-label-md opacity-70 animate-pulse pointer-events-none whitespace-nowrap z-20">
+            화면을 터치하거나 꾹 눌러서 왁스볼을 터트려보세요
         </div>
 <!-- Bottom Action Area -->
-<footer class="absolute bottom-0 w-full px-container-margin pb-12 pt-8 z-20 flex justify-center bg-gradient-to-t from-on-background via-on-background/80 to-transparent pointer-events-none">
-<button onclick="window.location.href='../library/code.html'" class="raised-btn-dark bg-inverse-surface px-8 py-4 rounded-xl flex items-center gap-3 text-inverse-primary font-label-md text-label-md w-full max-w-xs justify-center hover:bg-inverse-surface/80 pointer-events-auto">
+<footer class="absolute bottom-0 w-full px-container-margin pb-12 pt-8 z-20 flex justify-center bg-gradient-to-t from-surface via-surface/80 to-transparent pointer-events-none">
+<button onclick="window.location.href='../library/code.html'" class="raised-btn bg-surface px-8 py-4 rounded-xl flex items-center gap-3 text-primary font-label-md text-label-md w-full max-w-xs justify-center hover:bg-primary-container/20 pointer-events-auto transition-colors">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">archive</span>
                 서재로 저장
             </button>
@@ -252,6 +254,8 @@ try {
         if(match && colorMap[match[0]] !== undefined) {
             ballColor = colorMap[match[0]];
         }
+        // Load custom parts overlay
+        document.getElementById('partsOverlay').innerHTML = data.innerHTML;
     }
 } catch(e) {}
 
@@ -348,6 +352,9 @@ function onPointerMove(event) {
 
 function onPointerDown() {
     isPressing = true;
+    const partsOverlay = document.getElementById('partsOverlay');
+    if(partsOverlay) partsOverlay.style.transform = 'translate(-50%, -50%) scale(0.95)';
+    
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObject(ball);
     if (intersects.length > 0) {
@@ -359,6 +366,8 @@ function onPointerDown() {
 
 function onPointerUp() {
     isPressing = false;
+    const partsOverlay = document.getElementById('partsOverlay');
+    if(partsOverlay) partsOverlay.style.transform = 'translate(-50%, -50%) scale(1)';
 }
 
 container.addEventListener('pointermove', onPointerMove);
@@ -384,7 +393,9 @@ function animate() {
         particles.geometry.attributes.position.needsUpdate = true;
     }
     
-    ball.rotation.y += 0.005;
+    // Stop ball rotation
+    // ball.rotation.y += 0.005;
+    
     renderer.render(scene, camera);
 }
 
