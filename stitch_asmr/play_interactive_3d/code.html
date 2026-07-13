@@ -140,13 +140,33 @@
             화면을 터치하거나 꾹 눌러서 왁스볼을 터트려보세요
         </div>
 <!-- Bottom Action Area -->
-<footer class="absolute bottom-0 w-full px-container-margin pb-12 pt-8 z-20 flex justify-center bg-gradient-to-t from-surface via-surface/80 to-transparent pointer-events-none">
-<button onclick="window.location.href='../library/code.html'" class="raised-btn bg-surface px-8 py-4 rounded-xl flex items-center gap-3 text-primary font-label-md text-label-md w-full max-w-xs justify-center hover:bg-primary-container/20 pointer-events-auto transition-colors">
+<footer class="absolute bottom-0 w-full px-container-margin pb-12 pt-8 z-20 flex justify-center bg-gradient-to-t from-surface via-surface/80 to-transparent pointer-events-none" id="footer-actions">
+<button onclick="saveToLibrary()" class="raised-btn bg-surface px-8 py-4 rounded-xl flex items-center gap-3 text-primary font-label-md text-label-md w-full max-w-xs justify-center hover:bg-primary-container/20 pointer-events-auto transition-colors">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">archive</span>
                 서재로 저장
             </button>
 </footer>
 </main>
+<script>
+function saveToLibrary() {
+    const dataStr = localStorage.getItem('waxball_wip');
+    if (dataStr) {
+        const data = JSON.parse(dataStr);
+        let library = [];
+        const libStr = localStorage.getItem('waxball_library');
+        if (libStr) {
+            library = JSON.parse(libStr);
+        }
+        
+        const d = new Date();
+        data.date = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        
+        library.push(data);
+        localStorage.setItem('waxball_library', JSON.stringify(library));
+    }
+    window.location.href = '../library/code.html';
+}
+</script>
 <script>
 
         // --- Three.js Scene Setup ---
@@ -183,7 +203,25 @@ const geometry = new THREE.SphereGeometry(2, 64, 64);
 
 let ballColor = 0xffc1cc; // default
 try {
-    const dataStr = localStorage.getItem('waxball_wip');
+    const urlParams = new URLSearchParams(window.location.search);
+    const idParam = urlParams.get('id');
+    let dataStr = null;
+    
+    if (idParam !== null) {
+        const libStr = localStorage.getItem('waxball_library');
+        if (libStr) {
+            const library = JSON.parse(libStr);
+            if (library[idParam]) {
+                dataStr = JSON.stringify(library[idParam]);
+            }
+        }
+        // Hide "Save to Library" button if we are playing an already saved item
+        const footer = document.getElementById('footer-actions');
+        if (footer) footer.style.display = 'none';
+    } else {
+        dataStr = localStorage.getItem('waxball_wip');
+    }
+
     if(dataStr) {
         const data = JSON.parse(dataStr);
         const match = data.className.match(/bg-[^\s]+/);

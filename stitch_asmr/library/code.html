@@ -197,124 +197,7 @@
 </div>
 <!-- Shelves Layout -->
 <div class="flex flex-col gap-12 max-w-4xl mx-auto mb-20">
-<!-- Shelf 1 -->
-<div class="relative w-full pb-4">
-<div class="flex justify-around items-end gap-element-md px-4 pb-2 z-10 relative waxball-container">
-<!-- WaxBall Item 1 -->
-<div class="relative flex flex-col items-center group cursor-pointer" onclick="toggleMenu('ball-menu-1')">
-<div class="relative waxball mb-3 w-24 h-24 rounded-full" style="background: radial-gradient(circle at 30% 30%, #ffc1cc, #d5c2c4); box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), inset 5px 5px 15px rgba(255,255,255,0.8);">
-<!-- Specular highlight -->
-<div class="absolute top-2 left-3 w-6 h-4 bg-white/60 rounded-full blur-[2px] transform rotate-[-20deg]"></div>
-</div>
-<div class="glass-panel px-3 py-1 rounded-lg flex flex-col items-center shadow-sm">
-<span class="font-label-md text-label-md text-on-surface">Rose Blossom</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Oct 12</span>
-</div>
-<!-- Popover Menu -->
-<div class="absolute top-0 right-0 glass-panel rounded-xl p-2 hidden shadow-lg z-50 transform translate-x-1/2 -translate-y-1/4" id="ball-menu-1">
-<button class="flex items-center gap-2 w-full px-3 py-2 text-primary hover:bg-primary/10 rounded-lg transition-colors mb-1" onclick="window.location.href='../play_interactive_3d/code.html'; event.stopPropagation();">
-<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-<span class="font-label-md text-label-md">플레이</span>
-</button>
-<button class="flex items-center gap-2 w-full px-3 py-2 text-error hover:bg-error/10 rounded-lg transition-colors">
-<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
-<span class="font-label-md text-label-md">삭제</span>
-</button>
-</div>
-</div>
-<!-- WaxBall Item 2 -->
-<div class="relative flex flex-col items-center group cursor-pointer" onclick="toggleMenu('ball-menu-2')">
-<div class="relative waxball mb-3 w-20 h-20 rounded-full" style="background: radial-gradient(circle at 30% 30%, #bceddc, #a1d0c1); box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), inset 5px 5px 15px rgba(255,255,255,0.8);">
-<!-- Specular highlight -->
-<div class="absolute top-2 left-2 w-4 h-3 bg-white/60 rounded-full blur-[2px] transform rotate-[-20deg]"></div>
-</div>
-<div class="glass-panel px-3 py-1 rounded-lg flex flex-col items-center shadow-sm">
-<span class="font-label-md text-label-md text-on-surface">Mint Swirl</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Oct 10</span>
-</div>
-<div class="absolute top-0 right-1/4 glass-panel rounded-xl p-2 hidden shadow-lg z-50 transform translate-x-1/2 -translate-y-1/4" id="ball-menu-2">
-<button class="flex items-center gap-2 w-full px-3 py-2 text-primary hover:bg-primary/10 rounded-lg transition-colors mb-1" onclick="window.location.href='../play_interactive_3d/code.html'; event.stopPropagation();">
-<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-<span class="font-label-md text-label-md">플레이</span>
-</button>
-<button class="flex items-center gap-2 w-full px-3 py-2 text-error hover:bg-error/10 rounded-lg transition-colors">
-<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
-<span class="font-label-md text-label-md">삭제</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Shelf Base -->
-<div class="absolute bottom-0 w-full h-4 shelf-board rounded-sm z-0"></div>
-<!-- Shelf Shadow Cast -->
-<div class="absolute -bottom-6 w-[95%] mx-auto left-0 right-0 h-8 bg-surface-variant/30 blur-md rounded-full z-[-1]"></div>
-</div>
-<!-- Shelf 2 -->
-<div class="relative w-full pb-4">
-<div class="flex justify-around items-end gap-element-md px-4 pb-2 z-10 relative waxball-container">
-<!-- WaxBall Item 3 -->
-<div class="relative flex flex-col items-center group cursor-pointer" onclick="toggleMenu('ball-menu-3')">
-<div class="relative waxball mb-3 w-28 h-28 rounded-full" style="background: radial-gradient(circle at 30% 30%, #d0d0e3, #c5c5d8); box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), inset 5px 5px 15px rgba(255,255,255,0.8);">
-<!-- Texture overlay attempt via css -->
-<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-50 rounded-full"></div>
-<!-- Specular highlight -->
-<div class="absolute top-3 left-4 w-7 h-5 bg-white/50 rounded-full blur-[3px] transform rotate-[-20deg]"></div>
-</div>
-<div class="glass-panel px-3 py-1 rounded-lg flex flex-col items-center shadow-sm">
-<span class="font-label-md text-label-md text-on-surface">Lavender Dream</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Sep 28</span>
-</div>
-<div class="absolute top-0 right-0 glass-panel rounded-xl p-2 hidden shadow-lg z-50 transform translate-x-1/2 -translate-y-1/4" id="ball-menu-3">
-<button class="flex items-center gap-2 w-full px-3 py-2 text-primary hover:bg-primary/10 rounded-lg transition-colors mb-1" onclick="window.location.href='../play_interactive_3d/code.html'; event.stopPropagation();">
-<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-<span class="font-label-md text-label-md">플레이</span>
-</button>
-<button class="flex items-center gap-2 w-full px-3 py-2 text-error hover:bg-error/10 rounded-lg transition-colors">
-<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
-<span class="font-label-md text-label-md">삭제</span>
-</button>
-</div>
-</div>
-<!-- WaxBall Item 4 -->
-<div class="relative flex flex-col items-center group cursor-pointer" onclick="toggleMenu('ball-menu-4')">
-<div class="relative waxball mb-3 w-20 h-20 rounded-full" style="background: radial-gradient(circle at 30% 30%, #f3b7c1, #81515b); box-shadow: inset -5px -5px 15px rgba(0,0,0,0.3), inset 5px 5px 15px rgba(255,255,255,0.5);">
-<!-- Specular highlight -->
-<div class="absolute top-2 left-2 w-4 h-3 bg-white/40 rounded-full blur-[2px] transform rotate-[-20deg]"></div>
-</div>
-<div class="glass-panel px-3 py-1 rounded-lg flex flex-col items-center shadow-sm">
-<span class="font-label-md text-label-md text-on-surface">Deep Cherry</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Sep 15</span>
-</div>
-<div class="absolute top-0 right-1/4 glass-panel rounded-xl p-2 hidden shadow-lg z-50 transform translate-x-1/2 -translate-y-1/4" id="ball-menu-4">
-<button class="flex items-center gap-2 w-full px-3 py-2 text-primary hover:bg-primary/10 rounded-lg transition-colors mb-1" onclick="window.location.href='../play_interactive_3d/code.html'; event.stopPropagation();">
-<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-<span class="font-label-md text-label-md">플레이</span>
-</button>
-<button class="flex items-center gap-2 w-full px-3 py-2 text-error hover:bg-error/10 rounded-lg transition-colors">
-<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
-<span class="font-label-md text-label-md">삭제</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Shelf Base -->
-<div class="absolute bottom-0 w-full h-4 shelf-board rounded-sm z-0"></div>
-<!-- Shelf Shadow Cast -->
-<div class="absolute -bottom-6 w-[95%] mx-auto left-0 right-0 h-8 bg-surface-variant/30 blur-md rounded-full z-[-1]"></div>
-</div>
-<!-- Shelf 3 (Empty State representation) -->
-<div class="relative w-full pb-4">
-<div class="flex justify-center items-end h-32 px-4 pb-2 z-10 relative">
-<div class="flex flex-col items-center opacity-40">
-<span class="material-symbols-outlined text-[40px] text-outline mb-2" data-icon="add_circle">add_circle</span>
-<span class="font-label-md text-label-md text-outline">새로운 왁뿌볼 만들기</span>
-</div>
-</div>
-<!-- Shelf Base -->
-<div class="absolute bottom-0 w-full h-4 shelf-board rounded-sm z-0"></div>
-<!-- Shelf Shadow Cast -->
-<div class="absolute -bottom-6 w-[95%] mx-auto left-0 right-0 h-8 bg-surface-variant/30 blur-md rounded-full z-[-1]"></div>
-</div>
+<div id="dynamic-shelves" class="flex flex-col gap-12 w-full"></div>
 </div>
 </main>
 <!-- BottomNavBar -->
@@ -364,5 +247,89 @@
                 allMenus.forEach(menu => menu.classList.add('hidden'));
             }
         });
+
+        function renderLibrary() {
+            const container = document.getElementById('dynamic-shelves');
+            const libStr = localStorage.getItem('waxball_library');
+            let library = [];
+            if (libStr) {
+                try { library = JSON.parse(libStr); } catch(e) {}
+            }
+            
+            let html = '';
+            // We group into shelves, max 2 items per shelf
+            const itemsPerShelf = 2;
+            const shelvesCount = Math.max(1, Math.ceil(library.length / itemsPerShelf));
+            
+            for (let i = 0; i < shelvesCount; i++) {
+                const shelfItems = library.slice(i * itemsPerShelf, (i + 1) * itemsPerShelf);
+                let itemsHtml = '';
+                
+                if (shelfItems.length === 0) {
+                    itemsHtml = `
+                        <div class="flex flex-col items-center opacity-40 cursor-pointer" onclick="window.location.href='../maker_1/code.html'">
+                            <span class="material-symbols-outlined text-[40px] text-outline mb-2">add_circle</span>
+                            <span class="font-label-md text-label-md text-outline">새로운 왁뿌볼 만들기</span>
+                        </div>
+                    `;
+                } else {
+                    shelfItems.forEach((item, j) => {
+                        const globalIndex = i * itemsPerShelf + j;
+                        let sizeClass = 'w-24 h-24 flex-shrink-0'; 
+                        let cleanedClass = (item.className || '').replace(/w-\d+|h-\d+|md:w-\d+|md:h-\d+/g, '').replace('relative', '').trim();
+                        
+                        itemsHtml += `
+                            <div class="relative flex flex-col items-center group cursor-pointer" onclick="toggleMenu('ball-menu-${globalIndex}')">
+                                <div class="relative waxball mb-3 ${sizeClass} rounded-full ${cleanedClass} overflow-hidden flex items-center justify-center" style="box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), inset 5px 5px 15px rgba(255,255,255,0.8);">
+                                    ${item.innerHTML || ''}
+                                    <!-- Specular highlight -->
+                                    <div class="absolute top-2 left-3 w-6 h-4 bg-white/60 rounded-full blur-[2px] transform rotate-[-20deg]"></div>
+                                </div>
+                                <div class="glass-panel px-3 py-1 rounded-lg flex flex-col items-center shadow-sm">
+                                    <span class="font-label-md text-label-md text-on-surface">${item.name || 'My WaxBall ' + (globalIndex+1)}</span>
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant opacity-70">${item.date || ''}</span>
+                                </div>
+                                <!-- Popover Menu -->
+                                <div class="absolute top-0 right-0 glass-panel rounded-xl p-2 hidden shadow-lg z-50 transform translate-x-1/2 -translate-y-1/4" id="ball-menu-${globalIndex}">
+                                    <button class="flex items-center gap-2 w-full px-3 py-2 text-primary hover:bg-primary/10 rounded-lg transition-colors mb-1" onclick="window.location.href='../play_interactive_3d/code.html?id=${globalIndex}'; event.stopPropagation();">
+                                        <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+                                        <span class="font-label-md text-label-md">플레이</span>
+                                    </button>
+                                    <button class="flex items-center gap-2 w-full px-3 py-2 text-error hover:bg-error/10 rounded-lg transition-colors" onclick="deleteItem(${globalIndex}); event.stopPropagation();">
+                                        <span class="material-symbols-outlined text-[20px]">delete</span>
+                                        <span class="font-label-md text-label-md">삭제</span>
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                html += `
+                <div class="relative w-full pb-4">
+                    <div class="flex justify-around items-end gap-element-md px-4 pb-2 z-10 relative waxball-container h-40">
+                        ${itemsHtml}
+                    </div>
+                    <!-- Shelf Base -->
+                    <div class="absolute bottom-0 w-full h-4 shelf-board rounded-sm z-0"></div>
+                    <!-- Shelf Shadow Cast -->
+                    <div class="absolute -bottom-6 w-[95%] mx-auto left-0 right-0 h-8 bg-surface-variant/30 blur-md rounded-full z-[-1]"></div>
+                </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        function deleteItem(index) {
+            const libStr = localStorage.getItem('waxball_library');
+            if (libStr) {
+                let library = JSON.parse(libStr);
+                library.splice(index, 1);
+                localStorage.setItem('waxball_library', JSON.stringify(library));
+                renderLibrary();
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', renderLibrary);
     </script>
 </body></html>
