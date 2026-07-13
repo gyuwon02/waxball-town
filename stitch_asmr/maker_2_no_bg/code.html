@@ -236,6 +236,22 @@
 </section>
 <!-- Inline Interaction Logic -->
 <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dataStr = localStorage.getItem('waxball_wip');
+            if (dataStr) {
+                const data = JSON.parse(dataStr);
+                const clayBall = document.getElementById('clayBall');
+                const bgMatch = data.className.match(/bg-[^\s]+/);
+                if (bgMatch) {
+                    clayBall.className = clayBall.className.replace(/bg-\[[^\]]+\]/, '');
+                    clayBall.classList.add(bgMatch[0]);
+                }
+                const coating = document.getElementById('waxCoating');
+                clayBall.innerHTML = data.innerHTML;
+                clayBall.appendChild(coating);
+            }
+        });
+
         function selectWax(clickedBtn) {
             // Prevent changing during animation
             if(document.getElementById('actionBtn').disabled) return;
@@ -301,8 +317,8 @@
                 // Add a subtle bounce to draw attention
                 btn.classList.add('animate-[bounce_1s_ease-in-out_1]');
 
-                // Change click handler to next step (mock)
-                btn.onclick = () => alert('Proceeding to Play screen!');
+                // Change click handler to next step
+                btn.onclick = () => window.location.href = '../play/code.html';
             }, 4500);
         }
     </script>
