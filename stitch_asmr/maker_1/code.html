@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-<title>WaxBall Village - Make</title>
+<title>WaxBall Town - Make</title>
 <!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Google Fonts -->
@@ -132,7 +132,7 @@
 <body class="bg-background text-on-background antialiased pb-[100px] overflow-x-hidden font-body-md text-body-md h-screen flex flex-col">
 <!-- Top App Bar -->
 <header class="bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl docked full-width top-0 rounded-b-xl bg-surface-container-low/50 shadow-[inset_0_-1px_1px_rgba(255,255,255,0.6)] shadow-[0_4px_20px_-4px_rgba(129,81,91,0.15)] flex justify-between items-center w-full px-container-margin py-4 max-w-7xl mx-auto z-40 sticky">
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary dark:text-primary-fixed-dim drop-shadow-sm">WaxBall Village</h1>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary dark:text-primary-fixed-dim drop-shadow-sm">WaxBall Town</h1>
 <div class="flex items-center gap-element-gap-md text-primary dark:text-primary-fixed-dim">
 <button class="hover:scale-105 transition-transform duration-300 w-10 h-10 flex items-center justify-center rounded-full neomorph-raised active:scale-95 transition-all duration-150 ease-out">
 <span class="material-symbols-outlined" data-icon="redeem">redeem</span>
@@ -149,7 +149,7 @@
 <main class="flex-1 flex flex-col max-w-5xl mx-auto w-full pt-element-gap-md px-container-margin h-full relative">
 <!-- Progress / Step Indicator -->
 <div class="flex items-center justify-between mb-element-gap-md px-unit">
-<h2 class="font-headline-md text-headline-md text-primary">Step 1: Core &amp; Materials</h2>
+<h2 class="font-headline-md text-headline-md text-primary">Step 1: 중심부 및 재료</h2>
 <div class="flex gap-2">
 <div class="w-8 h-2 rounded-full bg-primary neomorph-sunken shadow-inner"></div>
 <div class="w-8 h-2 rounded-full bg-surface-variant neomorph-sunken"></div>
@@ -161,7 +161,7 @@
 <!-- Drop Zone Hint -->
 <div class="absolute inset-0 border-4 border-dashed border-primary/20 rounded-[2rem] m-4 pointer-events-none flex flex-col items-center justify-center opacity-50">
 <span class="material-symbols-outlined text-[48px] text-primary/40 mb-2" data-icon="drag_indicator">drag_indicator</span>
-<p class="font-label-md text-label-md text-primary/60">Drag or tap parts here</p>
+<p class="font-label-md text-label-md text-primary/60">파츠를 탭하거나 드래그하세요</p>
 </div>
 <!-- The Work-in-Progress Ball -->
 <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-white shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.1),_inset_10px_10px_20px_rgba(255,255,255,0.9),_0_20px_30px_-10px_rgba(129,81,91,0.3)] transition-colors duration-500 flex items-center justify-center z-10" id="wip-ball">
@@ -178,28 +178,28 @@
 <div class="flex-1 flex flex-col gap-element-gap-md bg-surface/60 backdrop-blur-md p-container-margin rounded-xl neomorph-raised">
 <h3 class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
 <span class="material-symbols-outlined text-[20px]" data-icon="lens">lens</span>
-                    Select Core
+                    중심부 선택
                 </h3>
 <!-- Core Carousel/Grid -->
 <div class="grid grid-cols-3 gap-element-gap-sm">
 <button class="flex flex-col items-center justify-center p-4 rounded-xl bg-primary-container text-on-primary-container border-2 border-white/50 shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8),inset_-2px_-2px_4px_rgba(0,0,0,0.1)] transition-transform active:scale-95" onclick="selectCore('bg-white')">
 <div class="w-10 h-10 rounded-full bg-white shadow-inner mb-2 border border-surface-variant"></div>
-<span class="font-label-sm text-label-sm">Squishy</span>
+<span class="font-label-sm text-label-sm">말랑이</span>
 </button>
 <button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface text-on-surface border border-white/20 neomorph-raised transition-transform active:scale-95 hover:bg-surface-variant" onclick="selectCore('bg-gray-800')">
 <div class="w-10 h-10 rounded-full bg-gray-800 shadow-inner mb-2 border border-surface-variant"></div>
-<span class="font-label-sm text-label-sm">Rubber</span>
+<span class="font-label-sm text-label-sm">고무</span>
 </button>
 <button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface text-on-surface border border-white/20 neomorph-raised transition-transform active:scale-95 hover:bg-surface-variant" onclick="selectCore('bg-blue-200')">
 <div class="w-10 h-10 rounded-full bg-blue-200 shadow-inner mb-2 border border-surface-variant opacity-80 backdrop-blur-sm"></div>
-<span class="font-label-sm text-label-sm">Water</span>
+<span class="font-label-sm text-label-sm">물</span>
 </button>
 </div>
 <!-- Color Palette -->
 <div class="mt-4">
 <h3 class="font-label-md text-label-md text-on-surface-variant mb-3 flex items-center gap-2">
 <span class="material-symbols-outlined text-[20px]" data-icon="palette">palette</span>
-                        Core Color
+                        색상 선택
                     </h3>
 <div class="flex gap-3 overflow-x-auto pb-2 neomorph-sunken p-3 rounded-lg">
 <button class="w-8 h-8 rounded-full bg-white flex-shrink-0 shadow-md border-2 border-primary" onclick="setColor('bg-white')"></button>
@@ -215,7 +215,7 @@
 <div class="flex justify-between items-center">
 <h3 class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
 <span class="material-symbols-outlined text-[20px]" data-icon="extension">extension</span>
-                        Add Parts
+                        파츠 추가
                     </h3>
 <span class="font-label-sm text-label-sm text-tertiary bg-surface-variant px-2 py-1 rounded-full">Drag &amp; Drop</span>
 </div>
@@ -224,7 +224,7 @@
 <!-- Part Items -->
 <div onclick="addPart('star')" class="cursor-pointer draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative active:scale-95 transition-transform">
 <div class="w-6 h-6 bg-yellow-400 rounded-sm transform rotate-45 shadow-sm group-hover:scale-110 transition-transform pointer-events-none"></div>
-<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Stars</span>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">별</span>
 </div>
 <div onclick="addPart('glitter')" class="cursor-pointer draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative active:scale-95 transition-transform">
 <div class="flex gap-1 flex-wrap w-8 h-8 items-center justify-center pointer-events-none">
@@ -232,20 +232,20 @@
 <div class="w-2 h-2 rounded-full bg-blue-400"></div>
 <div class="w-2 h-2 rounded-full bg-green-400"></div>
 </div>
-<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Glitters</span>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">글리터</span>
 </div>
 <div onclick="addPart('pebble')" class="cursor-pointer draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative active:scale-95 transition-transform">
 <div class="w-6 h-6 rounded-full bg-gray-400 shadow-inner pointer-events-none"></div>
-<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Pebbles</span>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">조약돌</span>
 </div>
 <div onclick="addPart('cube')" class="cursor-pointer draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative active:scale-95 transition-transform">
 <div class="w-6 h-6 rounded-sm bg-purple-300 opacity-80 backdrop-blur-sm shadow-sm pointer-events-none"></div>
-<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Cubes</span>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">큐브</span>
 </div>
 </div>
 <div class="mt-auto pt-6 flex justify-end">
 <button onclick="window.location.href='../maker_2_no_bg/code.html'" class="bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded-full neomorph-raised hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors active:scale-95 flex items-center gap-2">
-                        Next Step
+                        다음 단계
                         <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
