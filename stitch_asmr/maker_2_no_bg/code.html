@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WaxBall Village - Maker: Coating</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&amp;family=Quicksand:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f2f0ed",
+                        "inverse-surface": "#30312e",
+                        "surface-container-high": "#eae8e4",
+                        "primary-container": "#ffc1cc",
+                        "outline": "#837375",
+                        "on-primary-fixed": "#331019",
+                        "secondary-fixed": "#bceddc",
+                        "on-primary-fixed-variant": "#663a43",
+                        "tertiary": "#5c5d6e",
+                        "on-surface-variant": "#514345",
+                        "surface-dim": "#dbdad6",
+                        "secondary-container": "#bceddc",
+                        "on-secondary-container": "#406d60",
+                        "tertiary-fixed-dim": "#c5c5d8",
+                        "secondary": "#3a675a",
+                        "tertiary-container": "#d0d0e3",
+                        "on-surface": "#1b1c1a",
+                        "surface-variant": "#e4e2de",
+                        "on-secondary-fixed": "#002019",
+                        "primary-fixed": "#ffd9df",
+                        "error": "#ba1a1a",
+                        "primary": "#81515b",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#a1d0c1",
+                        "on-primary-container": "#7b4c56",
+                        "primary-fixed-dim": "#f3b7c1",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#81515b",
+                        "surface-container-highest": "#e4e2de",
+                        "on-secondary-fixed-variant": "#214e43",
+                        "on-background": "#1b1c1a",
+                        "inverse-primary": "#f3b7c1",
+                        "on-tertiary-fixed": "#191b29",
+                        "background": "#fbf9f5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fbf9f5",
+                        "tertiary-fixed": "#e1e1f5",
+                        "surface-container": "#efeeea",
+                        "surface-bright": "#fbf9f5",
+                        "outline-variant": "#d5c2c4",
+                        "on-tertiary-container": "#575869",
+                        "surface-container-low": "#f5f3ef",
+                        "on-tertiary-fixed-variant": "#444655",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "element-gap-md": "16px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "element-gap-sm": "8px",
+                        "unit": "8px",
+                        "element-gap-lg": "32px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "body-md": ["Nunito Sans"],
+                        "display-lg": ["Quicksand"],
+                        "label-md": ["Nunito Sans"],
+                        "headline-md": ["Quicksand"],
+                        "body-lg": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "700" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Neomorphic Utils */
+        .neo-raised {
+            box-shadow: 6px 6px 12px rgba(129, 81, 91, 0.1), 
+                       -6px -6px 12px rgba(255, 255, 255, 0.9);
+        }
+        .neo-sunken {
+            box-shadow: inset 4px 4px 8px rgba(129, 81, 91, 0.15), 
+                       inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+        .neo-ball-base {
+            box-shadow: inset -15px -15px 30px rgba(0, 0, 0, 0.15), 
+                       inset 15px 15px 30px rgba(255, 255, 255, 0.8),
+                       0 20px 40px -10px rgba(129, 81, 91, 0.2);
+        }
+        .neo-ball-coated {
+            box-shadow: inset -15px -15px 30px rgba(129, 81, 91, 0.4), 
+                       inset 15px 15px 30px rgba(255, 255, 255, 0.9),
+                       0 20px 40px -10px rgba(129, 81, 91, 0.3);
+        }
+
+        /* Animations */
+        @keyframes pourWax {
+            0% { transform: scaleY(0); opacity: 0; }
+            20% { transform: scaleY(1); opacity: 1; }
+            80% { transform: scaleY(1); opacity: 1; }
+            100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+        }
+        .animate-pour {
+            animation: pourWax 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            transform-origin: top;
+        }
+
+        @keyframes spreadWax {
+            0% { height: 0%; opacity: 0.8; }
+            100% { height: 100%; opacity: 1; }
+        }
+        .animate-spread {
+            animation: spreadWax 2s ease-out 0.8s forwards;
+        }
+
+        @keyframes hardenWax {
+            0% { filter: brightness(1.2) contrast(1.1); }
+            100% { filter: brightness(1) contrast(1); }
+        }
+        .animate-harden {
+            animation: hardenWax 2s ease-in-out 2.8s forwards;
+        }
+
+        .wax-stream {
+            width: 24px;
+            height: 250px;
+            background: linear-gradient(to bottom, theme('colors.primary-container'), theme('colors.primary-fixed'));
+            border-radius: 12px;
+            filter: drop-shadow(0 4px 12px rgba(255, 193, 204, 0.6));
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-hidden min-h-screen relative flex flex-col items-center select-none touch-manipulation">
+<!-- Workshop Background (Soft, blurred) -->
+<!-- Frosted overlay for readability -->
+<!-- Header (Transactional Navigation - Suppressed full nav) -->
+<header class="w-full px-container-margin py-6 flex justify-between items-center relative z-20 max-w-lg mx-auto">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface/80 backdrop-blur-md neo-raised text-primary hover:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<div class="text-center">
+<span class="font-label-md text-label-md text-primary tracking-widest uppercase block mb-1">Step 2 of 3</span>
+<h1 class="font-headline-md text-headline-md text-on-surface">코팅하기</h1>
+</div>
+<div class="w-12"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Canvas: The Ball -->
+<main class="flex-1 w-full flex flex-col items-center justify-center relative z-10 -mt-10">
+<!-- Wax Pouring Stream (Hidden initially) -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 z-30 wax-stream scale-y-0 opacity-0 pointer-events-none" id="waxStream"></div>
+<!-- The Ball Container -->
+<div class="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center mt-12">
+<!-- Base Clay Ball -->
+<div class="absolute inset-0 rounded-full bg-[#d0c8c0] neo-ball-base transition-all duration-500 overflow-hidden" id="clayBall">
+<!-- Wax Coating Layer (Revealed via height animation) -->
+<div class="absolute top-0 left-0 w-full bg-primary-container h-0 opacity-0 neo-ball-coated flex items-center justify-center relative" id="waxCoating">
+<!-- Subtle highlight to make it look glossy/liquid initially -->
+<div class="absolute top-[10%] left-[15%] w-1/3 h-1/3 bg-white/40 rounded-full blur-md mix-blend-overlay"></div>
+</div>
+</div>
+<!-- Shadow under the ball -->
+<div class="absolute -bottom-8 w-48 h-8 bg-black/10 rounded-full blur-xl"></div>
+</div>
+</main>
+<!-- Bottom Control Panel (Glassmorphism + Neomorphism) -->
+<section class="w-full max-w-lg mx-auto bg-surface/80 backdrop-blur-2xl rounded-t-[2.5rem] p-container-margin pb-safe border-t border-white/50 shadow-[0_-10px_40px_rgba(129,81,91,0.08)] relative z-20 transition-transform duration-500 transform translate-y-0" id="controlPanel">
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-center text-on-surface mb-6">왁스 코팅제</h2>
+<!-- Type Selector -->
+<div class="flex justify-center gap-element-gap-md" id="waxSelector">
+<!-- Glossy -->
+<button class="wax-btn group flex flex-col items-center gap-2 px-6 py-4 rounded-xl neo-raised bg-surface transition-all duration-300" data-type="glossy" onclick="selectWax(this)">
+<div class="w-8 h-8 rounded-full bg-primary-container shadow-inner border border-white/50 flex items-center justify-center group-[.active]:ring-2 ring-primary ring-offset-2 ring-offset-surface transition-all">
+<span class="material-symbols-outlined text-white text-sm opacity-0 group-[.active]:opacity-100 transition-opacity" data-weight="fill">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant group-[.active]:text-primary transition-colors">유광</span>
+</button>
+<!-- Matte -->
+<button class="wax-btn group flex flex-col items-center gap-2 px-6 py-4 rounded-xl neo-sunken bg-surface-container-low transition-all duration-300 active" data-type="matte" onclick="selectWax(this)">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim shadow-inner border border-black/5 flex items-center justify-center group-[.active]:ring-2 ring-primary ring-offset-2 ring-offset-surface transition-all">
+<span class="material-symbols-outlined text-primary text-sm opacity-0 group-[.active]:opacity-100 transition-opacity" data-weight="fill">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant group-[.active]:text-primary transition-colors">무광</span>
+</button>
+<!-- Glow -->
+<button class="wax-btn group flex flex-col items-center gap-2 px-6 py-4 rounded-xl neo-raised bg-surface transition-all duration-300" data-type="glow" onclick="selectWax(this)">
+<div class="w-8 h-8 rounded-full bg-secondary-container shadow-inner border border-white/50 flex items-center justify-center group-[.active]:ring-2 ring-primary ring-offset-2 ring-offset-surface transition-all">
+<span class="material-symbols-outlined text-secondary text-sm opacity-0 group-[.active]:opacity-100 transition-opacity" data-weight="fill">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant group-[.active]:text-primary transition-colors">야광</span>
+</button>
+</div>
+</div>
+<!-- Main Action Button -->
+<button class="w-full py-4 rounded-full bg-primary text-on-primary font-headline-md text-headline-md-mobile shadow-[0_8px_20px_rgba(129,81,91,0.3),inset_0_2px_4px_rgba(255,255,255,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2" id="actionBtn" onclick="startPour()">
+<span class="material-symbols-outlined" id="actionIcon">water_drop</span>
+<span id="actionText">코팅액 붓기</span>
+</button>
+</section>
+<!-- Inline Interaction Logic -->
+<script>
+        function selectWax(clickedBtn) {
+            // Prevent changing during animation
+            if(document.getElementById('actionBtn').disabled) return;
+
+            // Reset all
+            document.querySelectorAll('.wax-btn').forEach(btn => {
+                btn.classList.remove('active', 'neo-sunken', 'bg-surface-container-low');
+                btn.classList.add('neo-raised', 'bg-surface');
+            });
+            
+            // Set active
+            clickedBtn.classList.add('active', 'neo-sunken', 'bg-surface-container-low');
+            clickedBtn.classList.remove('neo-raised', 'bg-surface');
+        }
+
+        function startPour() {
+            const btn = document.getElementById('actionBtn');
+            const icon = document.getElementById('actionIcon');
+            const text = document.getElementById('actionText');
+            const stream = document.getElementById('waxStream');
+            const coating = document.getElementById('waxCoating');
+            const selector = document.getElementById('waxSelector');
+
+            // Disable interactions
+            btn.disabled = true;
+            btn.classList.remove('active:scale-95', 'hover:brightness-110');
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+            selector.classList.add('opacity-50', 'pointer-events-none');
+
+            // Start Pour Animation
+            stream.classList.add('animate-pour');
+
+            // Trigger Spread after stream hits (approx 0.8s)
+            coating.classList.add('animate-spread');
+
+            // Update UI to Hardening state
+            setTimeout(() => {
+                icon.textContent = 'hourglass_empty';
+                icon.classList.add('animate-pulse');
+                text.textContent = '굳히는 중...';
+                btn.classList.replace('bg-primary', 'bg-surface-variant');
+                btn.classList.replace('text-on-primary', 'text-on-surface-variant');
+                btn.style.boxShadow = 'inset 4px 4px 8px rgba(0,0,0,0.1), inset -4px -4px 8px rgba(255,255,255,0.8)';
+                
+                // Add hardening visual effect to the wax
+                coating.classList.add('animate-harden');
+            }, 800);
+
+            // Finish State
+            setTimeout(() => {
+                icon.textContent = 'play_arrow';
+                icon.classList.remove('animate-pulse');
+                icon.setAttribute('data-weight', 'fill');
+                text.textContent = '완성하기 & 플레잉';
+                
+                // Morph button to primary action
+                btn.classList.replace('bg-surface-variant', 'bg-primary');
+                btn.classList.replace('text-on-surface-variant', 'text-on-primary');
+                btn.style.boxShadow = '0 8px 20px rgba(129,81,91,0.3), inset 0 2px 4px rgba(255,255,255,0.3)';
+                btn.classList.add('active:scale-95', 'hover:brightness-110', 'cursor-pointer');
+                btn.disabled = false;
+                
+                // Add a subtle bounce to draw attention
+                btn.classList.add('animate-[bounce_1s_ease-in-out_1]');
+
+                // Change click handler to next step (mock)
+                btn.onclick = () => alert('Proceeding to Play screen!');
+            }, 4500);
+        }
+    </script>
+</body></html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>WaxBall Village - Make</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&amp;family=Quicksand:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f2f0ed",
+                    "inverse-surface": "#30312e",
+                    "surface-container-high": "#eae8e4",
+                    "primary-container": "#ffc1cc",
+                    "outline": "#837375",
+                    "on-primary-fixed": "#331019",
+                    "secondary-fixed": "#bceddc",
+                    "on-primary-fixed-variant": "#663a43",
+                    "tertiary": "#5c5d6e",
+                    "on-surface-variant": "#514345",
+                    "surface-dim": "#dbdad6",
+                    "secondary-container": "#bceddc",
+                    "on-secondary-container": "#406d60",
+                    "tertiary-fixed-dim": "#c5c5d8",
+                    "secondary": "#3a675a",
+                    "tertiary-container": "#d0d0e3",
+                    "on-surface": "#1b1c1a",
+                    "surface-variant": "#e4e2de",
+                    "on-secondary-fixed": "#002019",
+                    "primary-fixed": "#ffd9df",
+                    "error": "#ba1a1a",
+                    "primary": "#81515b",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#a1d0c1",
+                    "on-primary-container": "#7b4c56",
+                    "primary-fixed-dim": "#f3b7c1",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#81515b",
+                    "surface-container-highest": "#e4e2de",
+                    "on-secondary-fixed-variant": "#214e43",
+                    "on-background": "#1b1c1a",
+                    "inverse-primary": "#f3b7c1",
+                    "on-tertiary-fixed": "#191b29",
+                    "background": "#fbf9f5",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#fbf9f5",
+                    "tertiary-fixed": "#e1e1f5",
+                    "surface-container": "#efeeea",
+                    "surface-bright": "#fbf9f5",
+                    "outline-variant": "#d5c2c4",
+                    "on-tertiary-container": "#575869",
+                    "surface-container-low": "#f5f3ef",
+                    "on-tertiary-fixed-variant": "#444655",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "element-gap-md": "16px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "element-gap-sm": "8px",
+                    "unit": "8px",
+                    "element-gap-lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Quicksand"],
+                    "headline-lg-mobile": ["Quicksand"],
+                    "body-md": ["Nunito Sans"],
+                    "display-lg": ["Quicksand"],
+                    "label-md": ["Nunito Sans"],
+                    "headline-md": ["Quicksand"],
+                    "body-lg": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .neomorph-raised {
+            box-shadow: -8px -8px 16px rgba(255,255,255,0.8), 8px 8px 16px rgba(129,81,91,0.15);
+        }
+        .neomorph-sunken {
+            box-shadow: inset -4px -4px 8px rgba(255,255,255,0.8), inset 4px 4px 8px rgba(129,81,91,0.15);
+        }
+        .wood-texture {
+            background-color: #e4d5c7;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(129,81,91,0.03) 10px, rgba(129,81,91,0.03) 20px);
+        }
+        
+        /* Draggable item pulse animation */
+        @keyframes gentle-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .draggable-item:hover {
+            animation: gentle-pulse 1.5s infinite ease-in-out;
+            cursor: grab;
+        }
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased pb-[100px] overflow-x-hidden font-body-md text-body-md h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl docked full-width top-0 rounded-b-xl bg-surface-container-low/50 shadow-[inset_0_-1px_1px_rgba(255,255,255,0.6)] shadow-[0_4px_20px_-4px_rgba(129,81,91,0.15)] flex justify-between items-center w-full px-container-margin py-4 max-w-7xl mx-auto z-40 sticky">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary dark:text-primary-fixed-dim drop-shadow-sm">WaxBall Village</h1>
+<div class="flex items-center gap-element-gap-md text-primary dark:text-primary-fixed-dim">
+<button class="hover:scale-105 transition-transform duration-300 w-10 h-10 flex items-center justify-center rounded-full neomorph-raised active:scale-95 transition-all duration-150 ease-out">
+<span class="material-symbols-outlined" data-icon="redeem">redeem</span>
+</button>
+<button class="hover:scale-105 transition-transform duration-300 w-10 h-10 flex items-center justify-center rounded-full neomorph-raised active:scale-95 transition-all duration-150 ease-out">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container neomorph-raised">
+<img alt="User character avatar" class="w-full h-full object-cover" data-alt="A small, cute 3D rendered avatar character with a soft, squishy appearance, resembling a stylized artisan or toy maker. The character has a warm, inviting smile and is set against a soft, neomorphic pastel background. The lighting is gentle and studio-like, enhancing the tactile, silicone-like material of the character." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFqgaiQOeOYHuqD1brmnFpxYmB_uT_6-1iZnxnj84vOnDFdPLZw-0bhiiUYt6-KijDuZziF9LHh402g2libvo0NJC63iE64aAcJSyjKfbEH_Z9bZLuKsvFnfyLZtfRiXULrn3ndTpUKl5fA6sFZzvterHT4DIE88egTZL_tILo2rLaX5gNhR03aopJMGlbgt9qgrSuYk-IhsalGdlfwX8Se1IWNE0xjYEKQ7JHWK0Ubh_Pq7qoFN307xUVH6dAByKq-a_8SKiQTT4A"/>
+</div>
+</div>
+</header>
+<!-- Main Workshop Canvas -->
+<main class="flex-1 flex flex-col max-w-5xl mx-auto w-full pt-element-gap-md px-container-margin h-full relative">
+<!-- Progress / Step Indicator -->
+<div class="flex items-center justify-between mb-element-gap-md px-unit">
+<h2 class="font-headline-md text-headline-md text-primary">Step 1: Core &amp; Materials</h2>
+<div class="flex gap-2">
+<div class="w-8 h-2 rounded-full bg-primary neomorph-sunken shadow-inner"></div>
+<div class="w-8 h-2 rounded-full bg-surface-variant neomorph-sunken"></div>
+<div class="w-8 h-2 rounded-full bg-surface-variant neomorph-sunken"></div>
+</div>
+</div>
+<!-- The Workbench (Center Display) -->
+<div class="relative w-full aspect-square md:aspect-[16/9] md:h-[460px] rounded-[2rem] overflow-hidden mb-element-gap-lg wood-texture neomorph-sunken border border-white/40 flex items-center justify-center">
+<!-- Drop Zone Hint -->
+<div class="absolute inset-0 border-4 border-dashed border-primary/20 rounded-[2rem] m-4 pointer-events-none flex flex-col items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-[48px] text-primary/40 mb-2" data-icon="drag_indicator">drag_indicator</span>
+<p class="font-label-md text-label-md text-primary/60">Drag parts here</p>
+</div>
+<!-- The Work-in-Progress Ball -->
+<div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full bg-white shadow-[inset_-10px_-10px_20px_rgba(0,0,0,0.1),_inset_10px_10px_20px_rgba(255,255,255,0.9),_0_20px_30px_-10px_rgba(129,81,91,0.3)] transition-colors duration-500 flex items-center justify-center z-10" id="wip-ball">
+<!-- Example added part -->
+<div class="absolute w-4 h-4 bg-yellow-400 rounded-full top-1/4 left-1/3 shadow-sm transform rotate-12 blur-[1px] opacity-80"></div>
+<div class="absolute w-3 h-3 bg-blue-400 rounded-full bottom-1/3 right-1/4 shadow-sm blur-[1px] opacity-80"></div>
+<!-- Highlight/Gloss effect -->
+<div class="absolute top-4 left-6 w-1/3 h-1/4 bg-white/60 rounded-full blur-md transform -rotate-12"></div>
+</div>
+</div>
+<!-- Controls Area -->
+<div class="flex flex-col md:flex-row gap-element-gap-lg pb-24">
+<!-- Left/Top: Core Selection & Color -->
+<div class="flex-1 flex flex-col gap-element-gap-md bg-surface/60 backdrop-blur-md p-container-margin rounded-xl neomorph-raised">
+<h3 class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="lens">lens</span>
+                    Select Core
+                </h3>
+<!-- Core Carousel/Grid -->
+<div class="grid grid-cols-3 gap-element-gap-sm">
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-primary-container text-on-primary-container border-2 border-white/50 shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8),inset_-2px_-2px_4px_rgba(0,0,0,0.1)] transition-transform active:scale-95" onclick="selectCore('bg-white')">
+<div class="w-10 h-10 rounded-full bg-white shadow-inner mb-2 border border-surface-variant"></div>
+<span class="font-label-sm text-label-sm">Squishy</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface text-on-surface border border-white/20 neomorph-raised transition-transform active:scale-95 hover:bg-surface-variant" onclick="selectCore('bg-gray-800')">
+<div class="w-10 h-10 rounded-full bg-gray-800 shadow-inner mb-2 border border-surface-variant"></div>
+<span class="font-label-sm text-label-sm">Rubber</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface text-on-surface border border-white/20 neomorph-raised transition-transform active:scale-95 hover:bg-surface-variant" onclick="selectCore('bg-blue-200')">
+<div class="w-10 h-10 rounded-full bg-blue-200 shadow-inner mb-2 border border-surface-variant opacity-80 backdrop-blur-sm"></div>
+<span class="font-label-sm text-label-sm">Water</span>
+</button>
+</div>
+<!-- Color Palette -->
+<div class="mt-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="palette">palette</span>
+                        Core Color
+                    </h3>
+<div class="flex gap-3 overflow-x-auto pb-2 neomorph-sunken p-3 rounded-lg">
+<button class="w-8 h-8 rounded-full bg-white flex-shrink-0 shadow-md border-2 border-primary" onclick="setColor('bg-white')"></button>
+<button class="w-8 h-8 rounded-full bg-primary-container flex-shrink-0 shadow-sm border border-transparent hover:scale-110 transition-transform" onclick="setColor('bg-primary-container')"></button>
+<button class="w-8 h-8 rounded-full bg-secondary-container flex-shrink-0 shadow-sm border border-transparent hover:scale-110 transition-transform" onclick="setColor('bg-secondary-container')"></button>
+<button class="w-8 h-8 rounded-full bg-yellow-100 flex-shrink-0 shadow-sm border border-transparent hover:scale-110 transition-transform" onclick="setColor('bg-yellow-100')"></button>
+<button class="w-8 h-8 rounded-full bg-purple-100 flex-shrink-0 shadow-sm border border-transparent hover:scale-110 transition-transform" onclick="setColor('bg-purple-100')"></button>
+</div>
+</div>
+</div>
+<!-- Right/Bottom: Parts Selection -->
+<div class="flex-1 flex flex-col gap-element-gap-md bg-surface/60 backdrop-blur-md p-container-margin rounded-xl neomorph-raised">
+<div class="flex justify-between items-center">
+<h3 class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="extension">extension</span>
+                        Add Parts
+                    </h3>
+<span class="font-label-sm text-label-sm text-tertiary bg-surface-variant px-2 py-1 rounded-full">Drag &amp; Drop</span>
+</div>
+<!-- Parts Grid -->
+<div class="grid grid-cols-4 gap-4 mt-2">
+<!-- Part Items -->
+<div class="draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative">
+<div class="w-6 h-6 bg-yellow-400 rounded-sm transform rotate-45 shadow-sm group-hover:scale-110 transition-transform"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Stars</span>
+</div>
+<div class="draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative">
+<div class="flex gap-1 flex-wrap w-8 h-8 items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-pink-400"></div>
+<div class="w-2 h-2 rounded-full bg-blue-400"></div>
+<div class="w-2 h-2 rounded-full bg-green-400"></div>
+</div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Glitters</span>
+</div>
+<div class="draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative">
+<div class="w-6 h-6 rounded-full bg-gray-400 shadow-inner"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Pebbles</span>
+</div>
+<div class="draggable-item aspect-square bg-surface rounded-lg neomorph-raised flex items-center justify-center border border-white/40 group relative">
+<div class="w-6 h-6 rounded-sm bg-purple-300 opacity-80 backdrop-blur-sm shadow-sm"></div>
+<span class="absolute -bottom-6 font-label-sm text-label-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Cubes</span>
+</div>
+</div>
+<div class="mt-auto pt-6 flex justify-end">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded-full neomorph-raised hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors active:scale-95 flex items-center gap-2">
+                        Next Step
+                        <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="md:hidden bg-surface/90 dark:bg-inverse-surface/90 backdrop-blur-2xl fixed bottom-0 w-full z-50 rounded-t-xl px-4 pb-4 pt-2 bg-surface-container-highest/30 border-t border-white/20 shadow-[0_-10px_30px_-5px_rgba(0,0,0,0.05)] flex justify-around items-center left-0 pb-safe">
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-6 py-2 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),inset_-2px_-2px_4px_rgba(255,255,255,0.8)] scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="draw">draw</span>
+<span class="font-label-sm text-label-sm mt-1">Make</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-sm text-label-sm mt-1">Play</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant p-2 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined" data-icon="shelves">shelves</span>
+<span class="font-label-sm text-label-sm mt-1">Library</span>
+</button>
+</nav>
+<script>
+        // Simple interactions for prototyping
+        function selectCore(colorClass) {
+            const ball = document.getElementById('wip-ball');
+            // Remove existing color classes (simplified approach)
+            ball.className = ball.className.replace(/bg-\w+(-\d+)?/g, '');
+            ball.classList.add(colorClass);
+            
+            // Add visual feedback to buttons (would be more robust in real app)
+            event.currentTarget.parentElement.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-2', 'border-white/50');
+                btn.classList.add('bg-surface', 'text-on-surface', 'border', 'border-white/20');
+            });
+            event.currentTarget.classList.add('bg-primary-container', 'text-on-primary-container', 'border-2', 'border-white/50');
+            event.currentTarget.classList.remove('bg-surface', 'text-on-surface', 'border', 'border-white/20');
+        }
+
+        function setColor(colorClass) {
+            const ball = document.getElementById('wip-ball');
+            ball.className = ball.className.replace(/bg-\w+(-\d+)?/g, '');
+            ball.classList.add(colorClass);
+            
+            // Highlight selected color
+            event.currentTarget.parentElement.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('border-primary', 'border-2');
+                btn.classList.add('border-transparent', 'border');
+            });
+            event.currentTarget.classList.add('border-primary', 'border-2');
+            event.currentTarget.classList.remove('border-transparent', 'border');
+        }
+    </script>
+</body></html>
