@@ -199,6 +199,7 @@ scene.add(pointLight);
 const geometry = new THREE.SphereGeometry(2, 64, 64);
 
 let ballColor = 0xffc1cc; // default
+let waxType = 'matte'; // default
 try {
     const urlParams = new URLSearchParams(window.location.search);
     const idParam = urlParams.get('id');
@@ -212,7 +213,6 @@ try {
                 dataStr = JSON.stringify(library[idParam]);
             }
         }
-        // Hide "Save to Library" button if we are playing an already saved item
         const footer = document.getElementById('footer-actions');
         if (footer) footer.style.display = 'none';
     } else {
@@ -221,6 +221,7 @@ try {
 
     if(dataStr) {
         const data = JSON.parse(dataStr);
+        if (data.waxType) waxType = data.waxType;
         const match = data.className.match(/bg-[^\s]+/);
         const colorMap = {
             'bg-white': 0xffffff,
@@ -235,18 +236,29 @@ try {
         if(match && colorMap[match[0]] !== undefined) {
             ballColor = colorMap[match[0]];
         }
-        // Load custom parts overlay
         document.getElementById('partsOverlay').innerHTML = data.innerHTML;
     }
 } catch(e) {}
 
-const material = new THREE.MeshPhongMaterial({
+// Core Ball (Squishy Inner)
+const coreGeometry = new THREE.SphereGeometry(1.9, 64, 64);
+const coreMaterial = new THREE.MeshPhongMaterial({
     color: ballColor,
-    shininess: 100,
-    transparent: true,
-    opacity: 0.9
+    shininess: 30,
 });
-const ball = new THREE.Mesh(geometry, material);
+const coreBall = new THREE.Mesh(coreGeometry, coreMaterial);
+scene.add(coreBall);
+
+// Wax Shell (Hard Outer)
+const waxGeometry = new THREE.SphereGeometry(2.0, 64, 64);
+const waxMaterial = new THREE.MeshPhongMaterial({
+    color: 0xffffff,
+    shininess: waxType === 'glossy' ? 100 : 10,
+    transparent: true,
+    opacity: waxType === 'glossy' ? 0.6 : 0.85,
+    side: THREE.DoubleSide
+});
+const ball = new THREE.Mesh(waxGeometry, waxMaterial); // "ball" is the interactable wax shell
 scene.add(ball);
 
 camera.position.z = 5;
@@ -258,32 +270,35 @@ const clock = new THREE.Clock();
 
 // Deform parameters
 const deformIntensity = 0.5;
-const originalVertices = geometry.attributes.position.array.slice();
+const originalVertices = waxGeometry.attributes.position.array.slice();
 
 function deform(point, intensity) {
-    const positions = geometry.attributes.position.array;
+    const positions = waxGeometry.attributes.position.array;
     for (let i = 0; i < positions.length; i += 3) {
-        const vx = positions[i];
-        const vy = positions[i + 1];
-        const vz = positions[i + 2];
+        const vx = originalVertices[i];
+        const vy = originalVertices[i + 1];
+        const vz = originalVertices[i + 2];
         
         const dist = Math.sqrt((vx - point.x) ** 2 + (vy - point.y) ** 2 + (vz - point.z) ** 2);
-        if (dist < 1.5) {
-            const factor = (1.5 - dist) * intensity;
+        if (dist < 1.0) {
+            // Push wax shell heavily inward, exposing the core
+            const factor = (1.0 - dist) * intensity;
             positions[i] -= (vx - point.x) * factor;
             positions[i + 1] -= (vy - point.y) * factor;
             positions[i + 2] -= (vz - point.z) * factor;
         }
     }
-    geometry.attributes.position.needsUpdate = true;
+    waxGeometry.attributes.position.needsUpdate = true;
+    waxGeometry.computeVertexNormals();
 }
 
 function restore() {
-    const positions = geometry.attributes.position.array;
+    const positions = waxGeometry.attributes.position.array;
     for (let i = 0; i < positions.length; i++) {
         positions[i] += (originalVertices[i] - positions[i]) * 0.1;
     }
-    geometry.attributes.position.needsUpdate = true;
+    waxGeometry.attributes.position.needsUpdate = true;
+    waxGeometry.computeVertexNormals();
 }
 
 // Particle System for Cracks
@@ -296,7 +311,7 @@ for(let i=0; i<particlesCount*3; i++) {
     velArray[i] = (Math.random() - 0.5) * 0.1;
 }
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-const particlesMaterial = new THREE.PointsMaterial({ size: 0.15, color: ballColor });
+const particlesMaterial = new THREE.PointsMaterial({ size: 0.15, color: 0xffffff, transparent: true, opacity: waxType === 'glossy' ? 0.8 : 0.9 });
 const particles = new THREE.Points(particlesGeometry, particlesMaterial);
 particles.visible = false;
 scene.add(particles);
